@@ -14,12 +14,14 @@ export default function ItemsPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    
     const fetchItems = async () => {
       try {
         const response = await fetch("/api/items");
         if (!response.ok) throw new Error("Failed to fetch items");
         const data = await response.json();
         setItems(data);
+        
       } catch (error) {
         toast({
           variant: "destructive",

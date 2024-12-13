@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center space-y-4 text-center">
-      <h1 className="text-4xl font-bold">Modern Billing System</h1>
+      <h1 className="text-4xl font-bold primary-text">Modern Billing System</h1>
       <p className="text-lg text-muted-foreground">
         Manage your invoices, payments, and subscriptions with ease
       </p>

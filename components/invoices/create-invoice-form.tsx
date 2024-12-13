@@ -63,7 +63,7 @@ export function CreateInvoiceForm({ initialData }: any) {
   const [noteImages, setNoteImages] = useState<NoteImage[]>(initialData?.noteImages ||[]);
   const [dueDate, setDueDate] = useState(initialData ? new Date(initialData.dueDate).toISOString().split("T")[0] : '');
   const [invoiceNote,setInvoiceNote] = useState(initialData? initialData.notes : '')
-  const [customerId , setCustomerId] = useState(initialData.customerId || '')
+  const [customerId , setCustomerId] = useState(initialData?.customerId || '')
 
   useEffect(() => {
     if (initialData) {
@@ -221,7 +221,7 @@ export function CreateInvoiceForm({ initialData }: any) {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="space-y-4">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-4 box-shadow">
           <div className="space-y-2">
             <Label htmlFor="customer">Customer</Label>
             {initialData?
@@ -248,11 +248,11 @@ export function CreateInvoiceForm({ initialData }: any) {
           </div>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 invoice-items box-shadow">
           <Label>Items</Label>
           {items.map((item, index) => (
             <div key={index} className="grid grid-cols-12 gap-4 items-start">
-              <div className="col-span-3">
+              <div className="col-span-4">
                 <Select
                   value={item.itemId || undefined}
                   onValueChange={(value) => updateItem(index, "itemId", value)}
@@ -280,15 +280,7 @@ export function CreateInvoiceForm({ initialData }: any) {
                   </SelectContent>
                 </Select>
               </div>
-              <div className="col-span-3">
-                <Input
-                  placeholder="Description"
-                  value={item.description}
-                  onChange={(e) => updateItem(index, "description", e.target.value)}
-                  required
-                />
-              </div>
-              <div className="col-span-2">
+               <div className="col-span-3">
                 <Input
                   type="number"
                   placeholder="Qty"
@@ -298,7 +290,7 @@ export function CreateInvoiceForm({ initialData }: any) {
                   required
                 />
               </div>
-              <div className="col-span-2">
+              <div className="col-span-4">
                 <Input
                   type="number"
                   placeholder="Price"
@@ -309,13 +301,7 @@ export function CreateInvoiceForm({ initialData }: any) {
                   required
                 />
               </div>
-              <div className="col-span-1">
-                <FileUpload
-                  value={item.imageUrl}
-                  onUpload={(url) => updateItemImage(index, url)}
-                />
-              </div>
-              <div className="col-span-1">
+                <div className="col-span-1 text-right">
                 <Button
                   type="button"
                   variant="destructive"
@@ -326,6 +312,24 @@ export function CreateInvoiceForm({ initialData }: any) {
                   <X className="h-4 w-4" />
                 </Button>
               </div>
+              <div className="col-span-7">
+                <Input
+                  className="min-110"
+                  placeholder="Description"
+                  value={item.description}
+                  onChange={(e) => updateItem(index, "description", e.target.value)}
+                  required
+                />
+              </div>
+             
+              <div className="col-span-4">
+                <FileUpload
+                  value={item.imageUrl}
+                  onUpload={(url) => updateItemImage(index, url)}
+                />
+              </div>
+            
+              
             </div>
           ))}
           <Button type="button" variant="outline" onClick={addItem}>
@@ -333,7 +337,7 @@ export function CreateInvoiceForm({ initialData }: any) {
           </Button>
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-2 box-shadow">
           <Label htmlFor="notes">Notes</Label>
           <Textarea id="notes" name="notes" value={invoiceNote} onChange={(e) => setInvoiceNote(e.target.value)} placeholder="Additional notes..." />
           <div className="mt-2">

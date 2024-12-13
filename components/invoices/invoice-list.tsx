@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Eye, MoreHorizontal } from "lucide-react";
+import { Eye, MoreHorizontal, Pencil } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -118,6 +118,13 @@ export function InvoiceList({ status, dateRange }: InvoiceListProps) {
                       <Link href={`/dashboard/invoices/${invoice.id}`}>
                         <Eye className="mr-2 h-4 w-4" />
                         View
+                      </Link>
+                                           
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link href={`/dashboard/invoices/${invoice.id}/edit`}>
+                        <Pencil className="mr-2 h-4 w-4" />
+                      Edit
                       </Link>
                     </DropdownMenuItem>
                   </DropdownMenuContent>
