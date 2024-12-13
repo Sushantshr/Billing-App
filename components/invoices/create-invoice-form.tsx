@@ -64,6 +64,10 @@ export function CreateInvoiceForm({ initialData }: any) {
   const [dueDate, setDueDate] = useState(initialData ? new Date(initialData.dueDate).toISOString().split("T")[0] : '');
   const [invoiceNote,setInvoiceNote] = useState(initialData? initialData.notes : '')
   const [customerId , setCustomerId] = useState(initialData?.customerId || '')
+<<<<<<< HEAD
+=======
+  const [prePayment , setPrePayment] = useState(initialData?.prePayment || 0)
+>>>>>>> 39c170c5309c9ca974573624845a5178b210c592
 
   useEffect(() => {
     if (initialData) {
@@ -176,6 +180,7 @@ export function CreateInvoiceForm({ initialData }: any) {
         categoryId: item.categoryId,
         imageUrl: item.imageUrl,
       })),
+      prePayment: parseFloat(String(formData.get("prepayment"))),
       notes: formData.get("notes"),
       status:initialData? initialData.status :"PENDING",
       noteImages: noteImages,
